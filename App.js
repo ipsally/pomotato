@@ -37,17 +37,22 @@ function App() {
   return (
 
     <View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View>
-          <ImageBackground source={require('./assets/header-background.png')} style={{ width: '100%' }}>
+          <ImageBackground source={require('./assets/header-background.png')} style={{ resizeMode: 'stretch', }}>
             <View style={styles.nav}>
               <Image style={{ width: 36, height: 36, }} source={require('./assets/tato.png')} />
-              <Text style={[font.title, { margin: 20 }]}>Pomotato</Text>
+              <Text style={font.title}>Pomotato</Text>
             </View>
-            <View style={{ paddingLeft: 20, }}>
-              <Text style={font.today}>Today's Activities</Text>
+            <View style={{ padding: 20, }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Text style={font.today}>Today's List</Text>
+                <TouchableHighlight style={styles.callToAction} onPress={() => {}}>
+                  <Text style={font.callToAction}>See All</Text>
+                </TouchableHighlight>
+              </View>
               <View style={styles.row}>
-                <ScrollView horizontal>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                   {/* START replace Dimensionswith API element */}
                   <TouchableOpacity style={[styles.tile, { marginRight: dims.tileMargin, backgroundColor: '#fbe46e', }]}>
                     <Text style={font.tile}>Practice a Yoga Pose</Text>
@@ -64,13 +69,13 @@ function App() {
             </View>
           </ImageBackground>
         </View>
-
+        
         <View style={{ padding: 20, }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
             <Text style={font.allActivities}>All Activities</Text>
-            <View style={styles.callToAction}>
+            <TouchableHighlight style={styles.callToAction} onPress={() => {}}>
               <Text style={font.callToAction}>Add item</Text>
-            </View>
+            </TouchableHighlight>
           </View>
 
           <View style={styles.browse}>
@@ -82,7 +87,7 @@ function App() {
         </View>
 
       </ScrollView>
-      <Text style={{ backgroundColor: '#000' }}>Open up App.js to start working on your app!</Text>
+      {/* <Text style={{ backgroundColor: '#000' }}>Open up App.js to start working on your app!</Text> */}
       <StatusBar style="auto" />
     </View>
   );
@@ -95,6 +100,7 @@ const font = StyleSheet.create({
   title: {
     fontFamily: 'Rubik_700Bold',
     fontSize: 16,
+    marginHorizontal: 20,
   },
 
   today: {
@@ -126,6 +132,7 @@ const styles = StyleSheet.create({
   nav: {
     width: '100%',
     margin: 20,
+    marginBottom: 0,
     flexDirection: 'row',
     alignItems: 'center',
     // justifyContent: 'space-between',
@@ -141,7 +148,9 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    height: dims.tileHeight + 40,
+    justifyContent: 'center',
+    height: dims.tileHeight + 20,
+    overflow: 'hidden',
   },
   browse: {
     flexDirection: 'row',
@@ -156,6 +165,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor:'#fff',
   },
   container: {
     flex: 1,
