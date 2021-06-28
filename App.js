@@ -7,6 +7,7 @@ import { useFonts, Rubik_400Regular, Rubik_500Medium, Rubik_700Bold } from '@exp
 import { styles, dims, font} from './src/styles';
 import HomeScreen from './src/Home';
 import Activity from './src/Activity';
+import Today from './src/Today';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,7 @@ function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} options={{ header: props => <LogoTitle {...props} /> }} />
         <Stack.Screen name="Activity" component={Activity} options={{ header: props => <LogoTitle {...props} /> }} />
+        <Stack.Screen name="Today" component={Today} options={{ header: props => <LogoTitle {...props} /> }} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

@@ -47,7 +47,6 @@ export const styles = StyleSheet.create({
     height: dims.tileHeight,
     marginVertical: dims.tileMargin,
     padding: 10,
-    // aspectRatio: 130 / 100,
     borderRadius: 8,
     justifyContent: "center",
   },
