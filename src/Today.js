@@ -10,7 +10,7 @@ function Today({ navigation }) {
         for (let i = 0; i < 12; i++) {
             tiles.push(
                 <TouchableOpacity style={[styles.tile, { marginRight: dims.tileMargin / 2, backgroundColor: '#fbe46e', }]} onPress={() => navigation.navigate('Activity')}>
-                    <Text style={font.tile}>Practice a Yoga Pose</Text>
+                    <Text style={font.$H4}>Practice a Yoga Pose</Text>
                 </TouchableOpacity>)
         };
         return tiles;
@@ -22,7 +22,7 @@ function Today({ navigation }) {
                 <View>
                     <View style={{ padding: 20, }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <Text style={font.today}>Today's List</Text>
+                            <Text style={font.$H1}>Today's List</Text>
                         </View>
                         <View style={styles.browse}>
 
