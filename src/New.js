@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, ScrollView, TouchableOpacity, TextInput, TouchableHighlight, KeyboardAvoidingView } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, TextInput, TouchableHighlight, KeyboardAvoidingView, Platform } from 'react-native';
 import { styles, dims, font } from './styles';
 
 function New({ navigation }) {

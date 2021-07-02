@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "pomotato",
+    "name": "Pomotato",
     "slug": "pomotato",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -30,6 +30,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "Pomotato is a solution for ADHD go-getters to indulge in controlled distractions. By inspiring our users to pursue better break-time activities that help sustain their productivity throughout their day."
   }
 }
