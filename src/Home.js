@@ -1,34 +1,21 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, ScrollView, ImageBackground, TouchableHighlight, Image } from 'react-native';
 import { styles, dims, font } from './styles';
+import * as SQLite from 'expo-sqlite';
+import Category from './Category';
+
 
 function HomeScreen({ navigation }) {
-  const $categories = [
-    'All',
-    'Cleaning',
-    'Body',
-    'Creative',
-    'Self-care',
-  ]
-  const $moods = [
-    'Favourites',
-    'Mind',
-    'Food',
-    'Social',
-    'Media',
-    'Relax&De-stress',
-    'Get inspired',
-    'Boost energy',
-    'Feel productive',
-  ]
 
-  function filterGen(type) {
-    return type.map(
-        x => (<TouchableHighlight style={[styles.category]} onPress={() => alert(x)} >
-            <Text style={font.$H4}>{x}</Text>
+  function filterGen(categories) {
+    return categories.map(
+        category => (<TouchableHighlight style={[styles.category]} onPress={() => alert(category.name)} >
+            <Text style={font.$H4}>{category.label}</Text>
         </TouchableHighlight>))
   };
+
   function browseGen() {
+
     let tiles = [];
     for (let i = 0; i < 6; i++) {
       tiles.push(
@@ -38,6 +25,7 @@ function HomeScreen({ navigation }) {
     };
     return tiles;
   };
+
   function todayGen() {
     let tiles = [];
 
@@ -87,13 +75,16 @@ function HomeScreen({ navigation }) {
           
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={[styles.filters, { width: '100%', justifyContent: 'flex-start' }]}>
-              {filterGen($categories)}
+              {filterGen(Category.filter(category => category.type == 'theme'))}
             </View>
           </ScrollView>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={[styles.filters, { width: '100%', justifyContent: 'flex-start' }]}>
-              {filterGen($moods)}
+              {filterGen(Category.filter(category => category.type == 'mood'))}
             </View>
+            {/* <View style={[styles.filters, { width: '100%', justifyContent: 'flex-start' }]}>
+              {filterGen($moods)}
+            </View> */}
           </ScrollView>
 
 

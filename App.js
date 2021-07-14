@@ -10,6 +10,7 @@ import Activity from './src/Activity';
 import Today from './src/Today';
 import New from './src/New';
 import Timer from './src/Timer';
+// import base from './src/db';
 
 const Stack = createStackNavigator();
 
