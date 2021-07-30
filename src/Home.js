@@ -1,34 +1,39 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Text, View, TouchableOpacity, ScrollView, ImageBackground, TouchableHighlight, Image } from 'react-native';
 import { styles, dims, font } from './styles';
-import * as SQLite from 'expo-sqlite';
 import Category from './Category';
+import * as db from './db';
 
 
 function HomeScreen({ navigation }) {
-
+ const [activities, setActivities] = useState([]);
+ const [filter, setFilter] = useState('');
+ 
+ useEffect( () => {
+   db.getActivitiesBy(filter, activities => setActivities(activities));
+ }, [filter])
+ 
   function filterGen(categories) {
     return categories.map(
-        category => (<TouchableHighlight style={[styles.category]} onPress={() => alert(category.name)} >
+        category => (<TouchableHighlight style={[styles.category]} onPress={() => setFilter(category.name)} >
             <Text style={font.$H4}>{category.label}</Text>
         </TouchableHighlight>))
   };
 
-  function browseGen() {
-
+  function browseGen(activities) {
     let tiles = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < activities.length; i++) {
+      const color = Category.find(category => ( activities[i].category.indexOf(category.name) > -1) ).color
       tiles.push(
-        <TouchableOpacity style={[styles.tile, { backgroundColor: '#fbe46e', }]} onPress={() => navigation.navigate('Activity')}>
-          <Text style={font.$H4}>Practice a Yoga Pose</Text>
+        <TouchableOpacity style={[styles.tile, { backgroundColor: `#${color}` }]} onPress={() => navigation.navigate('Activity')}>
+          <Text style={font.$H4}>{activities[i].name}</Text>
         </TouchableOpacity>)
     };
     return tiles;
   };
 
-  function todayGen() {
+  function todayGen() { 
     let tiles = [];
-
     for (let i = 0; i < 12; i++) {
       tiles.push(
         <TouchableOpacity style={[styles.tile, { marginRight: dims.tileMargin / 2, backgroundColor: '#fbe46e', }]} onPress={() => navigation.navigate('Activity')}>
@@ -92,7 +97,8 @@ function HomeScreen({ navigation }) {
         <View style={styles.browse}>
 
             {/* generates activities tiles from database */}
-            {browseGen()}
+            {browseGen(activities)}
+            {/* {db.getActivitiesBy('body', activities => browseGen(activities))} */}
 
           </View>
         </View>

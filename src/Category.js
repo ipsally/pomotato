@@ -1,5 +1,11 @@
 export default [
     {
+        name: '*',
+        label: 'All',
+        color: null,
+        type: 'theme'
+    },
+    {
         name: 'body',
         label: 'Body',
         color: 'FBE46F',
@@ -50,25 +56,25 @@ export default [
     {
         name: 'inspire',
         label: 'Get Inspired',
-        color: '',
+        color: null,
         type: 'mood'
     },
     {
         name: 'productive',
         label: 'Feel Productive',
-        color: '',
+        color: null,
         type: 'mood'
     },
     {
         name: 'relax',
         label: 'Relax&De-stress',
-        color: '',
+        color: null,
         type: 'mood'
     },
     {
         name: 'energy',
         label: 'Boost energy',
-        color: '',
+        color: null,
         type: 'mood'
     }
 ]
